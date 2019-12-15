@@ -11,7 +11,9 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GridUI extends JComponent {
     public static int SQUARE_GRID_SIZE = 10;
@@ -26,18 +28,16 @@ public class GridUI extends JComponent {
     private Point startDrag, endDrag;
     private boolean roomDrawn = false;
 
-    private boolean drawingRoom = true;
-    private boolean addingEntrance = true;
-    private boolean addingStartPos = false;
-    private boolean addingEndPos = false;
+    private Map<String, Boolean> steps = new HashMap<>();
 
     public GridUI() {
         grid = new Grid(0, 0, Program.GRID_SIZE, Program.GRID_SIZE);
+        initStepBoolean();
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (drawingRoom) {
+                if (steps.get(Program.STEPS.get(0))) {
                     startDrag = checkIntersection(e.getPoint());
                     endDrag = startDrag;
                     repaint();
@@ -46,7 +46,7 @@ public class GridUI extends JComponent {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (drawingRoom && roomDrawn) {    // Making sure that it's not just a mouse click
+                if (steps.get(Program.STEPS.get(0)) && roomDrawn) {    // Making sure that it's not just a mouse click
                     SubgridUI r = new SubgridUI(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
                     rooms.add(r);
                     grid.addSubgrid(r.getSubgrid());
@@ -64,7 +64,7 @@ public class GridUI extends JComponent {
                 }
                 System.out.println("=======================");
 
-                if (addingEntrance) {
+                if (steps.get(Program.STEPS.get(1))) {
                     // rounding down so that it's easier to create a door along the border
                     EntranceUI entrance = new EntranceUI(e.getX() - e.getX()%SQUARE_GRID_SIZE,
                             e.getY() - e.getY()%SQUARE_GRID_SIZE);
@@ -81,13 +81,28 @@ public class GridUI extends JComponent {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (drawingRoom) {
+                if (steps.get(Program.STEPS.get(0))) {
                     roomDrawn = true;
                     endDrag = checkIntersection(e.getPoint());
                     repaint();
                 }
             }
         });
+    }
+
+    private void initStepBoolean() {
+        for (String step : Program.STEPS) {
+            steps.put(step, true);
+        }
+    }
+
+    public void switchToStep(String step) {
+        if (steps.containsKey(step)) {
+            for (String otherStep : steps.keySet()) {
+                steps.put(otherStep, false);
+            }
+            steps.put(step, true);
+        }
     }
 
     private void paintBackground(Graphics2D g2){
@@ -117,7 +132,7 @@ public class GridUI extends JComponent {
 //            g2.fill(room);
         }
 
-        if (drawingRoom) {
+        if (steps.get(Program.STEPS.get(0))) {
             if (startDrag != null && endDrag != null) {
                 g2.setPaint(Color.GRAY);
                 Shape r = new SubgridUI(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
