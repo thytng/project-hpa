@@ -108,4 +108,9 @@ public class Subgrid {
     public List<Node> getNodes() {
         return nodes;
     }
+
+    @Override
+    public String toString() {
+        return "A subgrid at position (" + x1 + "," + y1 + "),(" + x2 + "," + y2 + ")";
+    }
 }

@@ -9,7 +9,7 @@ public class Program extends JFrame {
     public Program() {
         this.setSize(GRID_SIZE, GRID_SIZE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(new Grid(), BorderLayout.CENTER);
+        this.add(new GridUI(), BorderLayout.CENTER);
         this.setVisible(true);
     }
 

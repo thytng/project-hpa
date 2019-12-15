@@ -1,17 +1,79 @@
-import backend.Entrance;
-import backend.Grid;
-import backend.Subgrid;
+import ui.SubgridUI;
 
-public class HPA {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class HPA extends JFrame {
+    public static int CANVAS_WIDTH = 800;
+    public static int CANVAS_HEIGHT = 600;
+
+    private List<SubgridUI> rooms;
+
+    private int x1, y1, x2, y2;
+
+    public HPA() {
+        rooms = new ArrayList<>();
+
+        Grid grid = new Grid();
+        grid.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
+        add(grid);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("HPA*");
+        pack();
+        setVisible(true);
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                x1 = e.getX();
+                y1 = e.getY();
+                System.out.println("yaaa");
+                repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                SubgridUI room = new SubgridUI(x1, y1, e.getX(), e.getY());
+                rooms.add(room);
+                System.out.println("what");
+                repaint();
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                SubgridUI room = new SubgridUI(x1, y1, e.getX(), e.getY());
+                rooms.add(room);
+                System.out.println("yeeeeee");
+                repaint();
+            }
+        });
+    }
+
+    public class Grid extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            for (SubgridUI room : rooms) {
+//                room.draw(g);
+            }
+        }
+    }
+
+    // The entry main method
     public static void main(String[] args) {
-        Grid grid = new Grid(0, 0, 13, 15);
-        Subgrid s1 = new Subgrid(1, 1, 7, 7);
-        Subgrid s2 = new Subgrid(7, 1, 12, 7);
-        Subgrid s3 = new Subgrid(1, 7, 4, 9);
-        Subgrid s4 = new Subgrid(4, 7, 12, 13);
-
-        Entrance e4 = new Entrance(7, 13);  // this one should be in s4
-        Entrance e34 = new Entrance(4, 8);  // this one should be in s3 and s4
-
+        SwingUtilities.invokeLater(new Runnable() {
+            // Run the GUI codes on the Event-Dispatching thread for thread safety
+            @Override
+            public void run() {
+                new HPA(); // Let the constructor do the job
+            }
+        });
     }
 }
