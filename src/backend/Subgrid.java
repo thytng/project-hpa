@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Subgrid {
     private double x1, y1, x2, y2;  // upper-left and lower-right corners
-    private Point uppperLeft, lowerRight;
     private List<Node> nodes;   // nodes in subgrid
 
     public Subgrid(double x1, double y1, double x2, double y2) {

@@ -29,11 +29,11 @@ public class AStarTest {
         e13 = new Entrance(3, 7);
         e24 = new Entrance(8, 7);
 
-        grid.addNodeAsEntrance(e4);
-        grid.addNodeAsEntrance(e34);
-        grid.addNodeAsEntrance(e12);
-        grid.addNodeAsEntrance(e13);
-        grid.addNodeAsEntrance(e24);
+        grid.addEntrance(e4);
+        grid.addEntrance(e34);
+        grid.addEntrance(e12);
+        grid.addEntrance(e13);
+        grid.addEntrance(e24);
     }
 
     @Test

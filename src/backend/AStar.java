@@ -7,7 +7,6 @@ public class AStar {
     public static List<Node> findPath(Node start, Node goal) {
         PriorityQueue<Node> open = new PriorityQueue<>(new NodeComparator());
         List<Node> closed = new ArrayList<>();
-        List<Node> path = new ArrayList<>();
 
         open.add(start);
 

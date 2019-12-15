@@ -9,8 +9,6 @@ public class Grid {
 
     private List<Node> nodes;
 
-    private Node currentStart, currentGoal;
-
     public Grid(double x1, double y1, double x2, double y2) {
         outdoorSubgrid = new Subgrid(x1, y1, x2, y2);
 
@@ -23,6 +21,7 @@ public class Grid {
     }
 
     public void addSubgrid(Subgrid subgrid) {
+        // TODO: check to make sure the coordinates are valid.
         indoorsSubgrids.add(subgrid);
     }
 
@@ -31,7 +30,7 @@ public class Grid {
      * @param entrance
      * @return a boolean indicating whether it was successfully added to at least one subgrid.
      */
-    public boolean addNodeAsEntrance(Entrance entrance) {
+    public boolean addEntrance(Entrance entrance) {
         boolean added = false;
         int timesAdded = 0;
         for (Subgrid subgrid : indoorsSubgrids) {
@@ -103,4 +102,24 @@ public class Grid {
     public List<Node> getNodes() {
         return nodes;
     }
+
+
+//    Given the (processed) start node s and end node e:
+//    Initialize Open as a priority queue, and
+//    Closed as a list;
+//    Add s to Open;
+//    While Open is not empty:
+//      Pop the current node c from Open that is
+//      the one with the lowest f score;
+//      If c is e, return the path;
+//      For each neighbor n of c:
+//          Compute its f, g, and h scores;
+//          If n is in not in Open, record its scores,
+//          set c as its parent, and add it to Open;
+//          Else, compare its current f0 score to
+//          the computed f score:
+//              If f < f0: update its scores,
+//              set c as its parent;
+
+
 }
