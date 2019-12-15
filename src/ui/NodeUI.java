@@ -10,7 +10,7 @@ public class NodeUI extends Ellipse2D.Float {
     protected Node node;
 
     public NodeUI(int x, int y) {
-        super(x, y, RADIUS*2, RADIUS*2);
+        super(x - RADIUS, y - RADIUS, RADIUS * 2, RADIUS * 2);
         this.x = x;
         this.y = y;
     }

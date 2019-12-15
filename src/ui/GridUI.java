@@ -65,7 +65,9 @@ public class GridUI extends JComponent {
                 System.out.println("=======================");
 
                 if (addingEntrance) {
-                    EntranceUI entrance = new EntranceUI(e.getX(), e.getY());
+                    // rounding down so that it's easier to create a door along the border
+                    EntranceUI entrance = new EntranceUI(e.getX() - e.getX()%SQUARE_GRID_SIZE,
+                            e.getY() - e.getY()%SQUARE_GRID_SIZE);
                     System.out.println(e.getPoint());
                     if (grid.addEntrance((Entrance) entrance.getNode())) {
                         System.out.println("Add entrance");
@@ -110,9 +112,9 @@ public class GridUI extends JComponent {
 
     private void paintSubgrids(Graphics2D g2) {
         for (Rectangle2D.Float room : rooms) {
-            g2.setPaint(SubgridUI.COLOR);
+            g2.setPaint(Color.BLACK);
             g2.draw(room);
-            g2.fill(room);
+//            g2.fill(room);
         }
 
         if (drawingRoom) {
