@@ -136,12 +136,32 @@ The class [HPA](https://github.com/thytng/project-hpa/blob/master/src/backend/HP
 
 Run this version by running the main method in the [Program](https://github.com/thytng/project-hpa/blob/master/src/ui/Program.java) class. The steps to take are:
 1. Build the subgrids by dragging from the upper-left to the lower-right corners of a subgrid to create one. Try not to overlap them as the program does not handle collision. 
+
+!(Step 1)[https://github.com/thytng/project-hpa/blob/master/demo/step1.gif]
+
 2. Add the entrances along the edges of subgrids. The program does have a checking mechanism for this (based on the backend implementation).
+
+!(Step 2)[https://github.com/thytng/project-hpa/blob/master/demo/step2.gif]
+
 3. Add start and end positions anywhere in the grid. For simplicity’s sake, you can only add one of each, though this is not a constraint in the backend version.
+
+!(Step 3)[https://github.com/thytng/project-hpa/blob/master/demo/step3.gif]
+
 4. Build the graph if you want to visualize the abstract graph, but this step is not necessary.
-Run AStar by clicking on Find Path. The program will color all of the nodes in the path.
-5. Clear the path before adding another start and end positions. This will remove the previous endpoints from the grid.
-6. Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
+
+!(Step 4)[https://github.com/thytng/project-hpa/blob/master/demo/step4.gif]
+
+5. Run AStar by clicking on Find Path. The program will color all of the nodes in the path.
+
+!(Step 5)[https://github.com/thytng/project-hpa/blob/master/demo/step5.gif]
+
+6. Clear the path before adding another start and end positions. This will remove the previous endpoints from the grid.
+
+!(Step 6)[https://github.com/thytng/project-hpa/blob/master/demo/step6.5.gif]
+
+7. Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
+
+!(Step 7)[https://github.com/thytng/project-hpa/blob/master/demo/step7.gif]
 
 # Discussion
 
