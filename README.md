@@ -157,7 +157,9 @@ Run this version by running the main method in the [Program](https://github.com/
 
 6. Clear the path before adding another start and end positions. This will remove the previous endpoints from the grid.
 
-![Step 6](https://github.com/thytng/project-hpa/blob/master/demo/step6.5.gif)
+![Step 6](https://github.com/thytng/project-hpa/blob/master/demo/step6.gif)
+
+![Step 6.5](https://github.com/thytng/project-hpa/blob/master/demo/step6.5.gif)
 
 7. Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
 
