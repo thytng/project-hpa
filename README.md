@@ -22,7 +22,7 @@ Although there are several ways to implement pathfinding in games, A* and HPA* a
 
 ### The Heuristic 
 
-The A* algorithm is one of the most popular choices for pathfinding in computer science due to its efficiency, optimality, and completeness. It is also fairly flexible and can be used in a wide range of contexts. A* is essentially an informed version of Dijkstra’s as it knows in advance the target destination, and it factors in this knowledge with a heuristic function, the approximate cost from the current node to the goal. Each node x is assigned an f score, where `f(x) = g(x) + h(x)`, with `g(x)` being the distance from the current node to the starting node, and `h(x)` the heuristic distance from the current node to the destination. A* only expands on a node if its `f` score is the current smallest, therefore reducing the amount of nodes that are considered in regular Dijkstra’s.
+The A* algorithm is one of the most popular choices for pathfinding in computer science due to its efficiency, optimality, and completeness. It is also fairly flexible and can be used in a wide range of contexts. A* is essentially an informed version of Dijkstra’s as it knows in advance the target destination, and it factors in this knowledge with a heuristic function, the approximate cost from the current node to the goal. Each node x is assigned an f score, where `f(x) = g(x) + h(x)`, with `g(x)` being the distance from the current node to the starting node, and `h(x)` the heuristic distance from the current node to the destination. A* only expands on a node if its `f` score is the current smallest, therefore reducing the amount of nodes that are considered in regular Dijkstra’s (Swift, 2017)
 
 ### Pseudo-Pseudocode
 
@@ -38,7 +38,7 @@ The most basic implementation of A* given the start and end nodes is as follows:
 
 ## Hierarchical Pathfinding A* 
 
-As the most basic implementation of A* is on a grid, merely overlaying a grid on top of the terrain and treating each square as a node would require a lot of computational power as the size of the terrain increases. Most games therefore adapt A* into HPA* by preprocessing the terrain into a weighted graph to reduce the number of nodes to explore.
+As the most basic implementation of A* is on a grid, merely overlaying a grid on top of the terrain and treating each square as a node would require a lot of computational power as the size of the terrain increases. Most games therefore adapt A* into HPA* by preprocessing the terrain into a weighted graph to reduce the number of nodes to explore (Le, Amandeep, & Narendra, 2008)
 
 ### Pseudo-Pseudocode
 
@@ -55,7 +55,7 @@ As the most basic implementation of A* is on a grid, merely overlaying a grid on
 
 ## HPA* in The Sims
 
-In the Sims, a plot is considered as a grid of same-sized squares. When a house is constructed, the program builds a room graph, with each room being a subgrid, and breaks down each room into smaller chunks, or sub-subgrids. The motivating idea is to build a path bottom-up in this hierarchical structure.
+In the Sims, a plot is considered as a grid of same-sized squares. When a house is constructed, the program builds a room graph, with each room being a subgrid, and breaks down each room into smaller chunks, or sub-subgrids. The motivating idea is to build a path bottom-up in this hierarchical structure (Bourse, 2014).
 
 ## HPA* by Dummies
 
@@ -134,7 +134,7 @@ Run this version by running the main method in the [Program](https://github.com/
 4. Build the graph if you want to visualize the abstract graph, but this step is not necessary.
 Run AStar by clicking on Find Path. The program will color all of the nodes in the path.
 5. Clear the path before adding another start and end positions. This will remove the previous endpoints from the grid.
-6, Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
+6. Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
 
 # Discussion
 
@@ -147,4 +147,12 @@ The project was an exciting attempt for us to gain a better understanding in gra
 Since we implemented the first step in finding the path and did not account for obstacles, the program returns the ordered list of nodes the agent should pass through and not the actual path the agent should take. Therefore, the program does not perform any path refinement or smoothing. Although it checks for valid placement of entrances and positions within a grid/subgrid, it does not verify that subgrids do not overlap, meaning that an entrance could be in more than two subgrids. As expected, this would lead to unpredictable and undesirable results when trying to find an optimal path. 
 
 Additionally, the Sims’s implementation of HPA* deconstructs a room (subgrid) into sub-subgrids, and even smaller sub-sub-subgrids if necessary, it can only construct a room based on the provided coordinate inputs. The game optimizes this nested structure to find a path bottom-up, building the path from the smallest to the biggest structure, thus saving computing resources should an obstacle suddenly block the current path or the action is cancelled. Since our version can only create subgrids from the provided coordinate inputs and does not have active agents, it does not have this dynamic component of the algorithm.
+
+# References
+
+Bourse, Y. (2014). Artificial Intelligence in The Sims series. Retrieved from  https://team.inria.fr/imagine/files/2014/10/sims-slides.pdf.
+
+Le, D. M., Amandeep, S. S., & Narendra S. C. (2008). Hierarchical Pathfinding and AI-Based Learning Approach in Strategy Game Design. International Journal of Computer Games Technology. https://doi.org/10.1155/2008/873913.
+
+Swift, N. (2017). Easy A* (star) Pathfinding. Retrieved from https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2.
 
