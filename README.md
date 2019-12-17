@@ -42,13 +42,20 @@ As the most basic implementation of A* is on a grid, merely overlaying a grid on
 
 ### Pseudo-Pseudocode
 
-1. Preprocessing a Terrain into a Weighted Graph
+#### 1. Preprocessing a Terrain into a Weighted Graph
+
 1.1. Transform terrain into a square grid, with each cell in the grid being the same size.
+
 1.2. Determine the accessibility of each cell and only consider the cells that are accessible to the agent. Essentially, these are the cells that do not contain any obstacles.
+
 1.3. Divide the grid into subgrids, and find the entrances between the subgrids. In the Sims, a subgrid is considered a room, and an entrance a door.
+
 1.4. Use nodes and edges to assemble a connected graph. A node is an entrance, and an edge is constructed by connecting two nodes within the same subgrid. Since a node is right along the border between two subgrids, it is therefore in both of them. 
-2. Running the Pathfinder
+
+#### 2. Running the Pathfinder
+
 2.1. Add start node S and goal node G to the connected graph and run A*.
+
 2.2 Refine the path and apply smoothing as needed in order to get the most optimal path.
 
 # Implementation of HPA*
