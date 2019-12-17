@@ -9,7 +9,7 @@ public class Program extends JFrame {
     public static int GRID_SIZE = 800;
 
     public static final List<String> STEPS = Arrays.asList("Build Subgrid", "Add Entrance", "Add Start Position",
-            "Add End Position", "Build Graph", "Find Path", "Clear Path");
+            "Add End Position", "Build Graph", "Find Path", "Clear Path", "Clear Grid");
 
     public Program() {
         this.setSize(GRID_SIZE, GRID_SIZE);

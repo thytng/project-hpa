@@ -4,12 +4,19 @@ import java.util.*;
 
 public class AStar {
 
+    /**
+     * Runs the A* algorithm, assuming that nodes have been processed (i.e. neighbors have been added).
+     * @param start
+     * @param goal
+     * @return The list of nodes in the path.
+     */
     public static List<Node> findPath(Node start, Node goal) {
         PriorityQueue<Node> open = new PriorityQueue<>(new NodeComparator());
         List<Node> closed = new ArrayList<>();
 
         open.add(start);
 
+        // while there are nodes to explore
         while (open.size() > 0) {
             // get the current node (one with the smallest f score)
             Node currentNode = open.poll();
@@ -52,6 +59,12 @@ public class AStar {
         return null;
     }
 
+    /**
+     * Finds the actual nodes in the path by traversing back from the end to the start nodes.
+     * These nodes are the parent nodes.
+     * @param end
+     * @return
+     */
     private static List<Node> findPath(Node end) {
         List<Node> path = new ArrayList<>();
         Node currentNode = end;
