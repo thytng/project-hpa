@@ -22,7 +22,7 @@ Although there are several ways to implement pathfinding in games, A* and HPA* a
 
 ### The Heuristic 
 
-The A* algorithm is one of the most popular choices for pathfinding in computer science due to its efficiency, optimality, and completeness. It is also fairly flexible and can be used in a wide range of contexts. A* is essentially an informed version of Dijkstra’s as it knows in advance the target destination, and it factors in this knowledge with a heuristic function, the approximate cost from the current node to the goal. Each node x is assigned an f score, where `f(x) = g(x) + h(x)`, with `g(x)` being the distance from the current node to the starting node, and `h(x)` the heuristic distance from the current node to the destination. A* only expands on a node if its `f` score is the current smallest, therefore reducing the amount of nodes that are considered in regular Dijkstra’s (Swift, 2017)
+The A* algorithm is one of the most popular choices for pathfinding in computer science due to its efficiency, optimality, and completeness. It is also fairly flexible and can be used in a wide range of contexts. A* is essentially an informed version of Dijkstra’s as it knows in advance the target destination, and it factors in this knowledge with a heuristic function, the approximate cost from the current node to the goal. Each node x is assigned an f score, where `f(x) = g(x) + h(x)`, with `g(x)` being the distance from the current node to the starting node, and `h(x)` the heuristic distance from the current node to the destination. A* only expands on a node if its `f` score is the current smallest, therefore reducing the amount of nodes that are considered in regular Dijkstra’s (Swift, 2017).
 
 ### Pseudo-Pseudocode
 
@@ -38,7 +38,7 @@ The most basic implementation of A* given the start and end nodes is as follows:
 
 ## Hierarchical Pathfinding A* 
 
-As the most basic implementation of A* is on a grid, merely overlaying a grid on top of the terrain and treating each square as a node would require a lot of computational power as the size of the terrain increases. Most games therefore adapt A* into HPA* by preprocessing the terrain into a weighted graph to reduce the number of nodes to explore (Le, Amandeep, & Narendra, 2008)
+As the most basic implementation of A* is on a grid, merely overlaying a grid on top of the terrain and treating each square as a node would require a lot of computational power as the size of the terrain increases. Most games therefore adapt A* into HPA* by preprocessing the terrain into a weighted graph to reduce the number of nodes to explore (Le, Amandeep, & Narendra, 2008).
 
 ### Pseudo-Pseudocode
 
