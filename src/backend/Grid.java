@@ -3,12 +3,23 @@ package backend;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A grid represents the walkable terrain of the game (i.e. plot of land).
+ * Contains the subgrids and nodes and mediates all relationships between these two classes.
+ */
 public class Grid {
     private List<Subgrid> indoorsSubgrids;
     private Subgrid outdoorSubgrid;
 
     private List<Node> nodes;
 
+    /**
+     * Creates a new grid.
+     * @param x1 Upper-left x
+     * @param y1 Upper-left y
+     * @param x2 Lower-right x
+     * @param y2 Lower-right y
+     */
     public Grid(double x1, double y1, double x2, double y2) {
         outdoorSubgrid = new Subgrid(x1, y1, x2, y2);
 
@@ -16,19 +27,29 @@ public class Grid {
         this.nodes = new ArrayList<>();
     }
 
-    public List<Subgrid> getIndoorsSubgrids() {
-        return indoorsSubgrids;
-    }
-
+    /**
+     * Adds a subgrid to the grid.
+     * Note: does not check for overlap.
+     * @param subgrid
+     */
     public void addSubgrid(Subgrid subgrid) {
-        // TODO: check to make sure the coordinates are valid.
         indoorsSubgrids.add(subgrid);
+
+//        for (Node node : nodes) {
+//            if (node instanceof Entrance) {
+//                addEntrance((Entrance) node);
+//            } else {
+//                plopDownPosition((Position) node);
+//            }
+//        }
     }
 
     /**
      * Adds a node as an entrance to the corresponding subgrid(s) it is in.
+     * If an entrance is only in one subgrid then also add it to the outdoor subgrid,
+     * indicating that it's an entrance leading outside.
      * @param entrance
-     * @return a boolean indicating whether it was successfully added to at least one subgrid.
+     * @return Whether the entrance was successfully added to at least one subgrid.
      */
     public boolean addEntrance(Entrance entrance) {
         boolean added = false;
@@ -52,7 +73,7 @@ public class Grid {
      * If it's not in any of the indoor subgrids, try adding it to the outdoor one.
      * A position can only be in one subgrid.
      * @param position
-     * @return
+     * @return Whether the position was successfully added.
      */
     public boolean plopDownPosition(Position position) {
         boolean added = false;
@@ -63,6 +84,7 @@ public class Grid {
                 return true;
             }
         }
+        // add to outdoor subgrid if it's not in any of the indoors ones.
         if (!added) {
             added = outdoorSubgrid.addNoseInsideSubgrid(position);
             addNodeToList(position);
@@ -85,6 +107,10 @@ public class Grid {
         return null;
     }
 
+    /**
+     * Removes a node from the grid and thus the subgrid(s) it is in.
+     * @param node
+     */
     public void removeNodeFromGrid(Node node) {
         nodes.remove(node);
         for (Subgrid subgrid : indoorsSubgrids) {
@@ -103,23 +129,7 @@ public class Grid {
         return nodes;
     }
 
-
-//    Given the (processed) start node s and end node e:
-//    Initialize Open as a priority queue, and
-//    Closed as a list;
-//    Add s to Open;
-//    While Open is not empty:
-//      Pop the current node c from Open that is
-//      the one with the lowest f score;
-//      If c is e, return the path;
-//      For each neighbor n of c:
-//          Compute its f, g, and h scores;
-//          If n is in not in Open, record its scores,
-//          set c as its parent, and add it to Open;
-//          Else, compare its current f0 score to
-//          the computed f score:
-//              If f < f0: update its scores,
-//              set c as its parent;
-
-
+    public List<Subgrid> getIndoorsSubgrids() {
+        return indoorsSubgrids;
+    }
 }

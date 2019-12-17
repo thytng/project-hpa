@@ -2,11 +2,15 @@ package ui;
 
 import backend.Node;
 
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
+/**
+ * Represents a node on the grid.
+ */
 public class NodeUI extends Ellipse2D.Float {
     public static final int RADIUS = 2;
-    private int x, y;
+    public static final Color IN_PATH = Color.GREEN;
     protected Node node;
 
     public NodeUI(int x, int y) {

@@ -40,6 +40,12 @@ public class GridTest {
     @Test
     public void testAddSubgrids() {
         assert grid.getIndoorsSubgrids().size() == 4;
+
+        // add another subgrid after entrances have been added
+        Subgrid s5 = new Subgrid(4, 13, 12, 15);    // should contain e4
+        grid.addSubgrid(s5);
+        assert s5.getNodes().size() == 1;
+        assert s5.getNodes().contains(e4);
     }
 
     @Test

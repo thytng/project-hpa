@@ -5,10 +5,20 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a subgrid/room on the grid.
+ */
 public class Subgrid {
     private double x1, y1, x2, y2;  // upper-left and lower-right corners
     private List<Node> nodes;   // nodes in subgrid
 
+    /**
+     * Creates a new subgrid, checking that the coordinates are valid.
+     * @param x1 Upper-left x
+     * @param y1 Upper-left y
+     * @param x2 Lower-right x
+     * @param y2 Lower-right y
+     */
     public Subgrid(double x1, double y1, double x2, double y2) {
         if (x1 > x2 || y1 > y2) {
             throw new IllegalArgumentException("(x1, y1) must be the upper-left corner and" +
@@ -23,10 +33,9 @@ public class Subgrid {
     }
 
     /**
-     * Adds a node as an entrance to the subgrid,
-     * first checking whether it is along the edges.
+     * Adds a node as an entrance to the subgrid, first checking whether it is along the edges.
      * @param entrance
-     * @return
+     * @return Whether the entrance was successfully added.
      */
     public boolean addNodeAsEntrance(Entrance entrance) {
         if (nodes.contains(entrance)) return true;  // do nothing if the entrance is already added
@@ -54,12 +63,12 @@ public class Subgrid {
     }
 
     /**
-     * Adds a node inside the subgrid
+     * Adds a node inside the subgrid.
      * @param node
-     * @return
+     * @return Whether the node was successfully added
      */
     public boolean addNoseInsideSubgrid(Node node) {
-        if (nodes.contains(node)) return true;
+        if (nodes.contains(node)) return true;  // do nothing if it is already added
         if (nodeInSubgrid(node)) {
             addNeighborsToNode(node);
             nodes.add(node);
@@ -90,7 +99,7 @@ public class Subgrid {
 
     /**
      * Remove a node from the subgrid,
-     * making sure to remove the neighbor relationship as well.
+     * making sure to remove the neighbor relationships as well.
      * @param node
      */
     public void removeNode(Node node) {
