@@ -159,6 +159,8 @@ Run this version by running the main method in the [Program](https://github.com/
 
 ![Step 6](https://github.com/thytng/project-hpa/blob/master/demo/step6.gif)
 
+6.5. Add other pairs of endpoints (or entrances) on the existing grid and reconfigure the path.
+
 ![Step 6.5](https://github.com/thytng/project-hpa/blob/master/demo/step6.5.gif)
 
 7. Clear the grid if you want to create a new grid with new subgrids and entrances as adding subgrids after entrances and positions have been added will cause unwanted behaviors.
